@@ -12,6 +12,8 @@
 //#include <matrixMap_22x22.h>
 //#include <matrixMap_32x48_3pin.h>
 
+#define FASTLED_HAS_UI_BUTTON 0
+
 #define DATA_PIN_1 2
 //#define DATA_PIN_2 3
 //#define DATA_PIN_3 4
