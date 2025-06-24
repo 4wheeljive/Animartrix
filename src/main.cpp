@@ -145,6 +145,8 @@ void setup() {
 
     setColorOrder(colorOrder);
   
+    bleSetup();
+
  }
 
 //************************************************************************************************************
@@ -155,21 +157,41 @@ void setup() {
 
 void loop() {
 
-    FastLED.setBrightness(brightness);
-    fxEngine.setSpeed(timeSpeed);
-    
-    static uint8_t fxIndex = initialFxIndex;
-    myAnimartrix.fxSet(fxIndex);
+    if (!displayOn){
+      FastLED.clear();
+    }
+    else {
+   
+        FastLED.setBrightness(brightness);
+        fxEngine.setSpeed(timeSpeed);
+        myAnimartrix.fxSet(fxIndex);
+        setColorOrder(colorOrder);
 
-    fxEngine.draw(millis(), leds);
-    FastLED.show();
-    
-    if (rotateAnimations) {
-        EVERY_N_SECONDS (SECONDS_PER_ANIMATION) { 
-            if (nextFxIndexRandom) {fxIndex = random(0, NUM_ANIMATIONS - 1);}
-            else {fxIndex += 1 % (NUM_ANIMATIONS - 1);}
+        fxEngine.draw(millis(), leds);
+        
+        if (rotateAnimations) {
+            EVERY_N_SECONDS (SECONDS_PER_ANIMATION) { 
+                if (nextFxIndexRandom) {fxIndex = random(0, NUM_ANIMATIONS - 1);}
+                else {fxIndex += 1 % (NUM_ANIMATIONS - 1);}
+                pAnimationCharacteristic->setValue(String(fxIndex).c_str());
+                pAnimationCharacteristic->notify();
+            }
         }
     }
+    
+    FastLED.show();
+
+
+    // Readvertise if BLE disconnected
+    if (!deviceConnected && wasConnected) {
+    if (debug) {Serial.println("Device disconnected.");}
+    delay(500); // give the bluetooth stack the chance to get things ready
+    pServer->startAdvertising();
+    if (debug) {Serial.println("Start advertising");}
+    wasConnected = false;
+    }
+
+
 }
 
 //************************************************************************************************************

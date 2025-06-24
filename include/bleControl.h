@@ -147,6 +147,8 @@ class AnimationCharacteristicCallbacks : public BLECharacteristicCallbacks {
          if (receivedValue == 9) { 
             fxIndex = 8;
          }
+         
+         displayOn = true;
          animationAdjust(fxIndex);
        
        }
@@ -279,7 +281,7 @@ class ControlCharacteristicCallbacks : public BLECharacteristicCallbacks {
 
 void bleSetup() {
 
- BLEDevice::init("Aurora Portal");
+ BLEDevice::init("AnimARTrix Playground");
 
  pServer = BLEDevice::createServer();
  pServer->setCallbacks(new MyServerCallbacks());

@@ -91,7 +91,7 @@
 	  setColorOrderForm.addEventListener('submit', function(event) {
 		event.preventDefault();
 		const newColorOrder = colorOrderInput.value;
-		console.log('New color order number:', newColorOrder);
+		//  console.log('New color order number:', newColorOrder);
 		writeColorCharacteristic(newColorOrder);
 		setColorOrderForm.reset();
 	});
@@ -100,7 +100,7 @@
 	  setSpeedForm.addEventListener('submit', function(event) {
 		event.preventDefault();
 		const newSpeed = speedInput.value;
-		console.log('New speed:', newSpeed);
+		//console.log('New speed sent:', newSpeed);
 		writeSpeedCharacteristic(newSpeed);
 		setSpeedForm.reset();
 	});
@@ -268,13 +268,13 @@
 
     function handleAnimationCharacteristicChange(event){
         const newValueReceived = new TextDecoder().decode(event.target.value);
-        console.log("Animation changed: ", newValueReceived);
+        console.log("New fxIndex: ", newValueReceived);
         animationValue.innerHTML = newValueReceived;
     }
 
     function handleColorCharacteristicChange(event){
         const newValueReceived = new TextDecoder().decode(event.target.value);
-        console.log("Color order changed: ", newValueReceived);
+        console.log("New color order: ", newValueReceived);
         colorOrderValue.innerHTML = newValueReceived;
     }
 
@@ -286,7 +286,7 @@
 
     function handleSpeedCharacteristicChange(event){
         const newValueReceived = new TextDecoder().decode(event.target.value);
-        console.log("Speed changed: ", newValueReceived);
+        console.log("New speed: ", newValueReceived);
         speedValue.innerHTML = newValueReceived;
     }
 
@@ -298,7 +298,7 @@
 
     function handleControlCharacteristicChange(event){
         const newValueReceived = new TextDecoder().decode(event.target.value);
-        console.log("Control changed: ", newValueReceived);
+        console.log("Control value received: ", newValueReceived);
         controlValue.innerHTML = newValueReceived;
     }
 
