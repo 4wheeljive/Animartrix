@@ -13,8 +13,8 @@
 //#define BIG_BOARD
 bool nextFxIndexRandom = false;
 bool rotateAnimations = true;
-uint8_t initialFxIndex = 4;
-uint8_t fxIndex = initialFxIndex;
+int initialFxIndex = 4;
+int fxIndex = initialFxIndex;
 
 #ifdef BIG_BOARD
     #include <matrixMap_32x48_3pin.h>
@@ -102,7 +102,7 @@ UISlider brightness("Brightness", BRIGHTNESS, 0, 255);
 
 bool debug = true;
 bool displayOn = true;
-uint8_t colorOrder = 0;
+int colorOrder = 0;
 double timeSpeed = 1;
 
 #include "bleControl.h"

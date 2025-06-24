@@ -36,7 +36,7 @@ BLEDescriptor pSpeedDescriptor(BLEUUID((uint16_t)0x2902));
 
 //Control functions***************************************************************
 
-void animationAdjust(uint8_t newAnimation) {
+void animationAdjust(int newAnimation) {
    fxIndex = newAnimation;
    pAnimationCharacteristic->setValue(String(newAnimation).c_str());
    pAnimationCharacteristic->notify();
@@ -46,7 +46,7 @@ void animationAdjust(uint8_t newAnimation) {
    }
 }
 
-void colorOrderAdjust(uint8_t newColorOrder) {
+void colorOrderAdjust(int newColorOrder) {
    colorOrder = newColorOrder;
    pColorCharacteristic->setValue(String(colorOrder).c_str());
    pColorCharacteristic->notify();
@@ -69,7 +69,7 @@ void colorOrderAdjust(uint8_t newColorOrder) {
 }
    */
 
-void speedAdjust(uint8_t newSpeed) {
+void speedAdjust(double newSpeed) {
    timeSpeed = newSpeed;
    pSpeedCharacteristic->setValue(String(timeSpeed).c_str());
    pSpeedCharacteristic->notify();
@@ -165,7 +165,7 @@ class ColorCharacteristicCallbacks : public BLECharacteristicCallbacks {
  void onWrite(BLECharacteristic *characteristic) {
     String value = characteristic->getValue();
     if (value.length() > 0) {
-       uint8_t receivedValue = value[0]; 
+       int receivedValue = value[0]; 
        if (debug) {
          Serial.print("Color order: ");
          Serial.println(receivedValue);
@@ -203,7 +203,7 @@ class SpeedCharacteristicCallbacks : public BLECharacteristicCallbacks {
  void onWrite(BLECharacteristic *characteristic) {
     String value = characteristic->getValue();
     if (value.length() > 0) {
-       uint8_t receivedValue = value[0]; 
+       double receivedValue = value[0]; 
        if (debug) {
          Serial.print("Speed adjust: ");
          Serial.println(receivedValue);
