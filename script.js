@@ -40,6 +40,7 @@
     var ControlCharacteristic =     '19b10006-e8f2-537e-4f6c-d104768a1214';
  
     //Global Variables to Handle Bluetooth
+    var bleDevice;
     var bleServer;
     var bleServiceFound;
   	var animationCharacteristicFound;
@@ -64,8 +65,8 @@
     spiralusButton.addEventListener('click', () => writeAnimationCharacteristic(2));
 	caleido1Button.addEventListener('click', () => writeAnimationCharacteristic(3));
 	wavesButton.addEventListener('click', () => writeAnimationCharacteristic(4));
-    ringsButton.addEventListener('click', () => writeAnimationCharacteristic(5));
-    chasingSpiralsButton.addEventListener('click', () => writeAnimationCharacteristic(6));
+    chasingSpiralsButton.addEventListener('click', () => writeAnimationCharacteristic(5));
+    ringsButton.addEventListener('click', () => writeAnimationCharacteristic(6));
     complexKaleidoButton.addEventListener('click', () => writeAnimationCharacteristic(7));
     experiment10Button.addEventListener('click', () => writeAnimationCharacteristic(8));
     experimentSM1Button.addEventListener('click', () => writeAnimationCharacteristic(9));
@@ -149,6 +150,7 @@
             optionalServices: [bleService]
         })
         .then(device => {
+            bleDevice = device;
             console.log('Device Selected:', device.name);
             bleStateContainer.innerHTML = 'Connected to ' + device.name;
             bleStateContainer.style.color = "#24af37";
@@ -263,7 +265,9 @@
         console.log('Device Disconnected:', event.target.device.name);
         bleStateContainer.innerHTML = 'Device disconnected';
         bleStateContainer.style.color = "#d13a30";
-        connectToDevice();
+        setTimeout(() => {
+            connectToDevice();
+        }, 2000);
     }
 
     function handleAnimationCharacteristicChange(event){

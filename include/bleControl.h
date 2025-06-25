@@ -120,31 +120,31 @@ class AnimationCharacteristicCallbacks : public BLECharacteristicCallbacks {
        
        if (receivedValue != 99) {
        
-         if (receivedValue == 1) {
+         if (receivedValue == 1) { //polar waves
             fxIndex = 0;
          }
-         if (receivedValue == 2) {
+         if (receivedValue == 2) { // spiralus
             fxIndex = 1;
          }
-         if (receivedValue == 3) { 
+         if (receivedValue == 3) { // caleido1
             fxIndex = 2;
          }
-         if (receivedValue == 4) {
+         if (receivedValue == 4) { // waves
             fxIndex = 3;
          }
-         if (receivedValue == 5) { 
+         if (receivedValue == 5) { // chasing spirals
             fxIndex = 4;
          }
-         if (receivedValue == 6) {
+         if (receivedValue == 6) { // rings
             fxIndex = 5;
          }
-         if (receivedValue == 7) {
+         if (receivedValue == 7) { // complex kaleido 6 
             fxIndex = 6;
          }
-         if (receivedValue == 8) { 
+         if (receivedValue == 8) { // experiment 10
             fxIndex = 7;
          }
-         if (receivedValue == 9) { 
+         if (receivedValue == 9) { // experiment sm1
             fxIndex = 8;
          }
          
